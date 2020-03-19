@@ -6,42 +6,42 @@
 
 /* weapp */
 page {
-    height: 100%;
+  height: 100%;
+}
+
+view,
+text,
+scroll-view {
+  box-sizing: border-box;
+}
+
+button {
+  &:after {
+    display: none;
   }
-  
-  view,
-  text,
-  scroll-view {
-    box-sizing: border-box;
-  }
-  
-  button {
-    &:after {
-      display: none;
-    }
-  }
-  
-  /* h5 */
-  /*postcss-pxtransform rn eject enable*/
-  div {
-    box-sizing: border-box;
-  }
-  
-  button {
-    outline: none;
-  }
-  
-  .taro-text {
-    box-sizing: border-box;
-  }
-  
-  .taro-tabbar__panel,
-  .taro_router {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  .taro_page {
-    flex: 1;
-  }
-  /*postcss-pxtransform rn eject disable*/
+}
+
+/* h5 */
+/*postcss-pxtransform rn eject enable*/
+// div {
+//   box-sizing: border-box;
+// }
+
+button {
+  outline: none;
+}
+
+.taro-text {
+  box-sizing: border-box;
+}
+
+.taro-tabbar__panel,
+.taro_router {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.taro_page {
+  flex: 1;
+}
+/*postcss-pxtransform rn eject disable*/

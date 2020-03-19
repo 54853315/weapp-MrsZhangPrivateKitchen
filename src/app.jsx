@@ -2,6 +2,7 @@ import Taro, { Component } from '@tarojs/taro'
 import Index from './pages/index'
 
 import './app.scss'
+import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -39,24 +40,24 @@ class App extends Component {
     },
     tabBar: {
       color: "#666",
-      selectedColor: "#b4282d",
+      selectedColor: "#3e53b4",
       backgroundColor: "#fafafa",
       borderStyle: 'black',
       list: [{
         pagePath: "pages/index/home",
-        // iconPath: "./assets/tab-bar/home.png",
-        // selectedIconPath: "./assets/tab-bar/home-active.png",
+        iconPath: "./assets/tab-bar/home2.png",
+        selectedIconPath: "./assets/tab-bar/home-active.png",
         text: "首页"
       }, { 
         pagePath: "pages/book/create",
-        // iconPath: "./assets/tab-bar/cate.png",
-        // selectedIconPath: "./assets/tab-bar/cate-active.png",
+        iconPath: "./assets/tab-bar/book.png",
+        selectedIconPath: "./assets/tab-bar/book-active.png",
         text: "新增"
       },{
         pagePath: "pages/user/user",
-        // iconPath: "./assets/tab-bar/user.png",
-        // selectedIconPath: "./assets/tab-bar/user-active.png",
-        text: "个人"
+        iconPath: "./assets/tab-bar/user.png",
+        selectedIconPath: "./assets/tab-bar/user-active.png",
+        text: "我的"
       }]
     }
   }

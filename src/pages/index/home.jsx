@@ -1,12 +1,11 @@
 import Taro, { Component, useEffect } from "@tarojs/taro";
-import { View, Text, Button, Image, ScrollView } from "@tarojs/components";
-import { Loading } from "@widgets";
-import Recommend from "./recommend";
-import Child from "./child";
-import Test from "./test";
+import { View, Text, Image, ScrollView } from "@tarojs/components";
+import { AtNoticebar } from "taro-ui";
+import { getWindowHeight } from '@utils/style'
+import { Loading,Timeline } from "@widgets";
+// import Recommend from "./recommend";
 // import { connect } from "@tarojs/redux";
 import "./home.scss";
-
 
 // import { lifeCycleRecorder } from "../../tools";
 // import searchIcon from './assets/search.png'
@@ -56,9 +55,8 @@ class Home extends Component {
   };
 
   handlePrevent = () => {
-    // XXX 时间关系，首页只实现底部推荐商品的点击
     Taro.showToast({
-      title: "目前只可点击底部推荐商品",
+      title: "未实现",
       icon: "none"
     });
   };
@@ -95,23 +93,29 @@ class Home extends Component {
       return <Loading />;
     }
 
-    const { homeInfo, recommend } = this.props
+    const { homeInfo, recommend } = this.props;
 
     return (
       <View ClassName="home">
-        <View className="home__search">
-          <View className="home__search-wrap" onClick={this.handlePrevent}>
-            <Image className="home__search-img" src="" />
-            <Text className="home__search-txt">{`搜索商品，共1款好物`}</Text>
-          </View>
-        </View>
+        <AtNoticebar icon="volume-plus" marquee>
+          小张私厨小程序，主要是为了取悦张奶油同学。
+        </AtNoticebar>
+
         <ScrollView
           scrollY
-          className="home__wrap"
+          className=""
+          style={{ height: getWindowHeight() }}
+          // home__wrap
           onScrollToLower={this.loadRecommend}
         >
-          {/* <Child userName='测试' /> */}
-          {/* <Button onClick={goToCookBookCreate}>创建菜谱</Button>
+          
+
+          {/* @TODO 需要做数据读取 */}
+          <Timeline list=""/> 
+
+          {/* <AtButton type="primary">按钮文案</AtButton> */}
+
+          {/* 
         {girls.map((item, index) => {
           return (
             <View key={{ index }}>{item.id}:{item.name}</View>
@@ -119,7 +123,6 @@ class Home extends Component {
         })} */}
 
           <View>
-
             {/* 练手写一下 */}
             {/* <View className="home-recommend">
               <View className="home-recommend__title">
@@ -141,7 +144,7 @@ class Home extends Component {
             {/* <Banner list={homeInfo.focus} /> */}
 
             {/* 为你推荐 */}
-            <Recommend list={recommend} />
+            {/* <Recommend list={recommend} /> */}
 
             {this.state.loading && (
               <View className="home__loading">
