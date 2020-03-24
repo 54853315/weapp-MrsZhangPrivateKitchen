@@ -6,12 +6,13 @@
 @import "~taro-ui/dist/style/components/activity-indicator.scss";
 @import "~taro-ui/dist/style/components/button.scss";
 
-// Custom theme 
+// Custom theme
 @import "@styles/theme.scss";
 
 // Self widget common styles
 $deep_grey: #888;
-$grey_bg: #dedede;
+// $grey_bg: #dedede;
+$grey_bg: $white;
 $tl-time-height: 85;
 
 .timeline {
@@ -38,7 +39,7 @@ $tl-time-height: 85;
     line-height: #{$tl-time-height}px;
   }
   .tl-line {
-    margin-bottom:2.7rem;
+    margin-bottom: 2.7rem;
     border-left: 0.05rem solid $blue;
     padding-left: 70px;
     // width: 80%;
@@ -49,7 +50,8 @@ $tl-time-height: 85;
     top: 2.9rem;
   }
   .tl-top-line {
-    background:linear-gradient(to right,#efefef,$blue,$blue,#efefef);height:2px;
+    background: linear-gradient(to right, #efefef, $blue, $blue, #efefef);
+    height: 2px;
     // border-top: 0.07rem solid $blue;
     position: relative;
     top: -70px;
@@ -65,21 +67,39 @@ $tl-time-height: 85;
     }
   }
   .tl-list {
-    color: $deep_grey;
-    &-txt{
-      word-wrap:break-word;
-      white-space:normal;
+    &-txt {
+      // color: $cozy_black;
+      word-wrap: break-word;
+      white-space: normal;
+      line-height: 40px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: rgba(0, 0, 0, 0.4);
+      // &-jump{
+      //   margin-left:10px;
+      //   color:$primary-color;
+      //   font-size:18px;
+      //   text-decoration: underline;
+      // }
     }
     &-img {
-      width: 235px;
-      height: 100%;
+      // width: 95%;
+      max-width: 5.6rem;
+      height: 4rem;
       display: list-item;
-      background: $grey_bg;
-      border-radius: 4px;
-      padding: 10px;
+      //background: $grey_bg;
+      border-radius: 10px;
+
+      // border: 4px solid #ededed;
+      margin-right: 10px;
+      margin-bottom: 10px;
       //  知识点： https://segmentfault.com/a/1190000011874066
+
       object-fit: none;
       object-position: center;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
     }
     &-time {
       color: $blue;
@@ -87,7 +107,7 @@ $tl-time-height: 85;
       left: -2.6rem;
       background-color: $white;
       //   background:#000; //NOTE 测试对齐用
-      font-size: 14px;
+      font-size: 20px;
       width: 100px;
       text-align: center;
       z-index: 1;
@@ -95,25 +115,41 @@ $tl-time-height: 85;
       padding-bottom: 10px;
       top: 1.4rem;
     }
+    &-jump {
+      // margin-top:10px;
+
+      // text-align: right;
+      // text-decoration: underline;
+      // font-size:18px;
+      color: $blue;
+    }
     &-item {
-      width:95%;
+      // width:95%;
       font-size: 26px;
-      margin-bottom: 15px;
+      margin-bottom: 40px;
       background: $grey_bg;
-      padding: 10px;
+      // padding: 10px;
       word-break: break-all;
       position: relative;
-    //   border-radius: 10px;   //NOTE 没有圆角看起来更飒一些
+      //   border-radius: 10px;   //NOTE 没有圆角看起来更飒一些
       &:after {
-        content: "";
+        content: "—";
         position: absolute;
-        width: 0;
+        // width: 0;
         height: 0;
-        border: 24px solid $white;
-        border-right-color: $grey_bg;
+
+        //线条样式
+        color: $blue;
+
+        //以下是三角箭头样式
+        // border: 24px solid $white;
+        // border-right-color: #dedede;
         top: 1.5rem;
         right: 100%;
       }
+    }
+    .at-tag {
+      margin-right: 10px;
     }
   }
 }

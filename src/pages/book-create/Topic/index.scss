@@ -1,0 +1,10 @@
+@import "@styles/theme.scss";
+@import "~taro-ui/dist/style/components/list.scss";
+@import "~taro-ui/dist/style/components/icon.scss";
+
+.topic{
+    // display: flex;
+    // position: absolute;
+    // z-index:1;
+    background:$white;
+}

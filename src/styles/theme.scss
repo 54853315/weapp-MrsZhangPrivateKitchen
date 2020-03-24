@@ -1,10 +1,11 @@
 @import "./mixins.scss";
 
-$primary-color: #ab2b2b;
+$primary-color: #78A4F4;
 $disabled-color: #dddddd;
 $blue: #3e53b4;
 $black: #000000;
 $white: #ffffff;
+$cozy_black: #333333;
 
 $text-color: #333333;
 $text-color-light: #666666;
@@ -14,3 +15,11 @@ $border-color: #dddddd;
 $border-radius: 4px;
 
 $image-bg: #f4f4f4;
+
+.show{
+    display:block;
+}
+
+.hidden{
+    display:none;
+}

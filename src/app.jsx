@@ -25,7 +25,9 @@ class App extends Component {
       'pages/index/home',  //@TODO 测试学习用的page，将来要改成欢迎首页
       // 'pages/book/book',    //菜谱时间线界面
       // 'pages/book/item',    //菜谱详情界面
-      'pages/book/create',  //创建菜谱界面
+      'pages/book-create/index',  //创建菜谱
+      'pages/book-create/select',  //创建菜谱
+      'pages/book-create/advanced',  //创建菜谱-进阶设置
       // 'pages/book/edit',  //编辑菜谱页面
       // 'pages/search/index', //搜索页面
       // 'pages/user-login/wechat',  //微信登录注册页面
@@ -49,7 +51,7 @@ class App extends Component {
         selectedIconPath: "./assets/tab-bar/home-active.png",
         text: "首页"
       }, { 
-        pagePath: "pages/book/create",
+        pagePath: "pages/book-create/index",
         iconPath: "./assets/tab-bar/book.png",
         selectedIconPath: "./assets/tab-bar/book-active.png",
         text: "新增"

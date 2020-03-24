@@ -1,0 +1,33 @@
+.intro {
+  border: none;
+}
+.intro textarea{
+  font-size:0.59733rem;
+}
+
+.divider-superfine {
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  border: 0 solid #d6e4ef;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-bottom-width: 1px;
+}
+
+.at-image-picker{
+  margin-bottom: 40px;
+}
+
+// 统一与form中的元素样式
+.at-list{
+  padding: 0.312rem 0.48267rem 0.312rem 0;
+  margin-bottom: 1PX;
+  &__item{
+    margin-bottom: 1PX;
+    padding:0.512rem 0.68267rem 0.512rem 0;
+    margin-left: 0.68267rem;
+    font-size:0.59733rem
+  }
+}
