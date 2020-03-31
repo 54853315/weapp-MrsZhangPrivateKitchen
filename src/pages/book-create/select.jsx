@@ -53,6 +53,7 @@ export default class BookCreateSelect extends Component {
     });
 
     var hash = "#";
+
     var isTopicTimeRightNow = false;
     var cursor = event.target.selectionStart;
     // 搜索#
