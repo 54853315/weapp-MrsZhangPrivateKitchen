@@ -37,7 +37,7 @@ export default class BookCreateSelect extends Component {
         ]
       },
       hasTopic: false, //是否有话题
-      currentTopic: [{ current: 0, text: "" }] //当前内容
+      currentTopic: [{ cursor: 0, text: "" }] //当前内容
       // replaces:{},
     };
   }
@@ -47,6 +47,7 @@ export default class BookCreateSelect extends Component {
   refTopic = node => (this.topic = node);
 
   handleIntroTyping = (input, event) => {
+    console.log("handleIntroTyping");
     this.setState({
       formData: { ...this.state.formData, intro: input }
     });
@@ -76,6 +77,7 @@ export default class BookCreateSelect extends Component {
 
     if (isTopicTimeRightNow) {
       var start = input.lastIndexOf(hash, cursor);
+      //@TODO 如果句首获取不了，则不更新
       let search = input.substring(start, cursor);
       console.error("[topic]当前话题是:" + search);
       this.setState({
@@ -122,14 +124,20 @@ export default class BookCreateSelect extends Component {
     this.handleRefreshTopic(list);
   };
 
+  //把所选话题补全至输入框
   handleTopicClick = (name, id, e) => {
     console.log("您已经选择了" + name + "这个话题");
-    //把所选话题补全至输入框
     console.log("目前句首：" + this.state.currentTopic.cursor);
     var intro = this.state.formData.intro;
-    var newIntro = intro.slice(0, this.state.currentTopic.text.length);
-    console.error(newIntro);
-    this.setState({ currentTopic: { text: name } });
+    var start = this.state.currentTopic.cursor;
+    name = "#" + name + " ";
+    var newIntro =
+      intro.slice(0, start) + name + intro.slice(start + name.length, -1);
+    this.setState({
+      currentTopic: { cursor: 0, text: "" },
+      formData: { ...this.state.formData, intro: newIntro },
+      hasTopic: false
+    });
   };
 
   handleRefreshTopic = list => {
