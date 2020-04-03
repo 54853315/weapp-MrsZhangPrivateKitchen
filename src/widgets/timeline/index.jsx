@@ -15,21 +15,9 @@ export default class Timeline extends Component {
     list: []
   };
 
-  //TODO 测试界面用数据，后续要删
-  timelines = [
-    { id: 1, name: "a" },
-    { id: 2, name: "b" }
-  ];
-
   goToBookItem = item => {
-    // Taro.showToast({
-    //   title: "内页功能未实现",
-    //   icon: "none"
-    // });
-    // return false;
     Taro.navigateTo({
-      url: `/pages/book-create/select`
-      // url: `/pages/book/item?itemId=${item.id}`
+      url: `/pages/book/item?itemId=${item.id}`
     });
   };
 
@@ -41,11 +29,11 @@ export default class Timeline extends Component {
   }
 
   render() {
-    const { list } = this.timelines;
+    const { list } = this.props;
     return (
       <View className="at-row">
         <View className="">
-          {this.timelines.map((item, index) => {
+          {list.map((item, index) => {
             const { id } = item;
             return (
               <View

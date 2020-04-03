@@ -14,15 +14,23 @@ const RECOMMEND_SIZE = 20;
 
 // @connect(state => state.home, { ...actions, dispatchCartNum })
 class Home extends Component {
+  
   config = {
     navigationBarTitleText: "小张私厨"
   };
+
+  constructor() {
+    super(...arguments);
+  }
+
+  refTimeline = node => (this.timeline = node);
 
   state = {
     loaded: false,
     loading: false,
     lastItemId: 0,
-    hasMore: true
+    hasMore: true,
+    timelines: []
   };
 
   componentDidMount() {
@@ -34,11 +42,19 @@ class Home extends Component {
       return;
     }
 
-    const payload = {
-      lastItemId: this.state.lastItemId,
-      size: RECOMMEND_SIZE
-    };
-    this.setState({ loading: false, loaded: true });
+
+    let lists = [
+      { id: 1, name: "a" },
+      { id: 2, name: "b" }
+    ];
+
+    this.setState({ loading: false, loaded: true,timelines: lists });
+    
+    
+    // const payload = {
+    //   lastItemId: this.state.lastItemId,
+    //   size: RECOMMEND_SIZE
+    // };
     // this.props
     //   .dispatchRecommend(payload)
     //   .then(res => {
@@ -54,12 +70,6 @@ class Home extends Component {
     //   });
   };
 
-  handlePrevent = () => {
-    Taro.showToast({
-      title: "未实现",
-      icon: "none"
-    });
-  };
 
   //NOTE useReducer()
 
@@ -93,8 +103,7 @@ class Home extends Component {
       return <Loading />;
     }
 
-    const { homeInfo, recommend } = this.props;
-
+    const { timelines } = this.state;
     return (
       <View ClassName="home">
         <AtNoticebar icon="volume-plus" marquee>
@@ -109,9 +118,7 @@ class Home extends Component {
           onScrollToLower={this.loadRecommend}
         >
           
-
-          {/* @TODO 需要做数据读取 */}
-          <Timeline list=""/> 
+          <Timeline list={timelines} /> 
 
           {/* <AtButton type="primary">按钮文案</AtButton> */}
 
