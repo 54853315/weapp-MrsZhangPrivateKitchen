@@ -9,24 +9,12 @@ import Food3 from "@assets/foods/food3.jpeg";
 import Food4 from "@assets/foods/nf1.jpeg";
 import Food5 from "@assets/foods/nf2.jpg";
 import Food6 from "@assets/foods/nf3.jpeg";
+import { goToTagPage,goToBookItemPage } from "../../tools/index";
 
 export default class Timeline extends Component {
   static defaultProps = {
     list: []
   };
-
-  goToBookItem = id => {
-    Taro.navigateTo({
-      url: `/pages/book/item?itemId=${id}`
-    });
-  };
-
-  goToTag = ()=>{
-    Taro.showToast({
-      title: "标签功能还未实现",
-      icon: "none"
-    });
-  }
 
   render() {
     const { list } = this.props;
@@ -39,7 +27,7 @@ export default class Timeline extends Component {
               <View
                 className="timeline"
                 key="logistic~"
-                onClick={this.goToBookItem.bind(this, id)}
+                onClick={goToBookItemPage.bind(this, id)}
               >
                 <View className="tl-time">
                   <Text className="">03/17</Text>
@@ -65,7 +53,7 @@ export default class Timeline extends Component {
                         <View className="tl-list-txt">
                         </View>
                         <AtTag
-                          onClick={this.goToTag.bind(this, id)}
+                          onClick={goToTagPage.bind(this, id)}
                           name="tag-1"
                           type="primary"
                           circle
@@ -75,7 +63,7 @@ export default class Timeline extends Component {
                           粤系
                         </AtTag>
                         <AtTag
-                        onClick={this.goToTag.bind(this, id)}
+                        onClick={goToTagPage.bind(this, id)}
                           name="tag-1"
                           type="primary"
                           circle
@@ -101,7 +89,7 @@ export default class Timeline extends Component {
                         <View className="tl-list-txt">
                         </View>
                         <AtTag
-                          onClick={this.goToTag.bind(this, id)}
+                          onClick={goToTagPage.bind(this, id)}
                           name="tag-1"
                           type="primary"
                           circle
@@ -111,7 +99,7 @@ export default class Timeline extends Component {
                           中式糕点
                         </AtTag>
                         <AtTag
-                        onClick={this.goToTag.bind(this, id)}
+                        onClick={goToTagPage.bind(this, id)}
                           name="tag-1"
                           type="primary"
                           circle

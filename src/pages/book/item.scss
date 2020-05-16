@@ -1,6 +1,9 @@
 @import "@styles/theme.scss";
 
 .item {
+  .at-tag {
+    margin-left: 0.5rem;
+  }
   &-avatar {
     font-size: 0.65rem;
     width: 8rem;
@@ -78,21 +81,21 @@
   //评论区
   &-comment {
     font-size: 0.55rem;
-    margin-top:0.5rem;
-    &-avatar{
-        padding-left:0.5rem;
-        top: -0.5rem;
-        position: relative;
+    margin-top: 0.5rem;
+    &-avatar {
+      padding-left: 0.5rem;
+      top: -0.5rem;
+      position: relative;
     }
     &-nickname {
-    //   display:inline-flex;
+      //   display:inline-flex;
     }
     &-more {
       color: $text-color-light;
     }
-    &-content{
-        margin:0 0.5rem 0 0.5rem;
-        font-size:0.7rem;
+    &-content {
+      margin: 0 0.5rem 0 0.5rem;
+      font-size: 0.7rem;
     }
   }
 }

@@ -11,19 +11,14 @@ import {
 import "./item.scss";
 import img1 from "@assets/foods/food1.jpeg";
 import img2 from "@assets/foods/food2.jpeg";
+import { goBack,goToTagPage } from "../../tools/index";
+
 export default class BookItem extends Component {
   static defaultProps = {
     list: [],
     id: null,
     img1: "https://blog.img.crazyphper.com/2019/12/DSC4807.jpg",
     avatar: "https://img.crazyphper.com/home/images/picture.jpg"
-  };
-
-  goToTag = () => {
-    Taro.showToast({
-      title: "标签功能还未实现",
-      icon: "none"
-    });
   };
 
   // Taro 提供了 componentWillPreload 钩子，它接收页面跳转的参数作为参数。可以把需要预加载的内容通过 return 返回，然后在页面触发 componentWillMount 后即可通过 this.$preloadData 获取到预加载的内容。
@@ -55,6 +50,7 @@ export default class BookItem extends Component {
           color="#000"
           title="菜品"
           leftText="返回"
+          onClickLeftIcon={goBack}
           leftIconType="chevron-left"
           rightColor="#888"
           rightFirstIconType="share"
@@ -100,7 +96,7 @@ export default class BookItem extends Component {
 
         {/* 标签 */}
         <AtTag
-          onClick={this.goToTag.bind(this, 1)}
+          onClick={goToTagPage.bind(this, 1)}
           name="tag-1"
           type="primary"
           circle
@@ -110,7 +106,7 @@ export default class BookItem extends Component {
           粤系
         </AtTag>
         <AtTag
-          onClick={this.goToTag.bind(this, 1)}
+          onClick={goToTagPage.bind(this, 1)}
           name="tag-1"
           type="primary"
           circle
@@ -167,7 +163,7 @@ export default class BookItem extends Component {
                 <Image src={img1} className="tl-list-img at-col at-col-6" />
                 <Image src={img1} className="tl-list-img at-col at-col-6" />
                 <AtTag
-                  onClick={this.goToTag.bind(this, 1)}
+                  onClick={goToTagPage.bind(this, 1)}
                   name="tag-1"
                   type="primary"
                   circle
@@ -177,7 +173,7 @@ export default class BookItem extends Component {
                   粤系
                 </AtTag>
                 <AtTag
-                  onClick={this.goToTag.bind(this, 1)}
+                  onClick={goToTagPage.bind(this, 1)}
                   name="tag-1"
                   type="primary"
                   circle
