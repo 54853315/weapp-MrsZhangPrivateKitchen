@@ -1,0 +1,104 @@
+@import "@styles/theme.scss";
+
+.item {
+  &-avatar {
+    font-size: 0.65rem;
+    width: 8rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 13.5rem;
+    z-index: 999;
+    background: $white;
+    border-radius: 1.5rem;
+    span {
+      position: relative;
+      top: -0.6rem;
+    }
+    &-img {
+      display: inline-block;
+      margin: 0.2rem 0.8rem 0 0.2rem;
+      padding: 0;
+      text-align: left;
+      // box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  // 正文信息
+  &-main {
+    margin: 0.2rem 0.5rem 0.5rem 0.5rem;
+    font-size: 0.6rem;
+    &-title {
+      font-size: 0.8rem;
+      color: $text-color;
+    }
+    &-date {
+      padding: 0.2rem 0 0.2rem 0;
+      color: $text-color-lighter;
+    }
+    &-content {
+      color: $text-color;
+    }
+  }
+
+  // 幻灯片
+  &-banner {
+    // width:750;
+    height: 14.5rem;
+    &-item {
+      height: 15rem;
+      transition: transform 500ms;
+      transform: scale(0.95, 0.9); /* 因为非主图看不清，所以可以变形处理 */
+      //   border-radius: 8px;
+      //   box-shadow: 0px 6px 10px 0px rgba(179, 154, 139, 1);
+    }
+    &-img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // 分割线，带用户头像定位样式 废弃
+  &-divider-with-avatar-anchor {
+    background: linear-gradient(to right, #efefef, $blue, $blue, #efefef);
+    height: 1px;
+    // border-top: 0.07rem solid $blue;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      height: 0;
+      //以下是三角箭头样式
+      border: 0.3rem solid $white;
+      border-top-color: #dedede;
+      top: 0.05rem;
+      right: 6.8rem;
+    }
+  }
+
+  //评论区
+  &-comment {
+    font-size: 0.55rem;
+    margin-top:0.5rem;
+    &-avatar{
+        padding-left:0.5rem;
+        top: -0.5rem;
+        position: relative;
+    }
+    &-nickname {
+    //   display:inline-flex;
+    }
+    &-more {
+      color: $text-color-light;
+    }
+    &-content{
+        margin:0 0.5rem 0 0.5rem;
+        font-size:0.7rem;
+    }
+  }
+}
+
+// 幻灯片 控制点在右下方
+.swiper-pagination-bullets {
+  left: 6rem !important;
+  bottom: 1rem !important;
+}

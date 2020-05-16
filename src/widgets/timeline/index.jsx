@@ -15,9 +15,9 @@ export default class Timeline extends Component {
     list: []
   };
 
-  goToBookItem = item => {
+  goToBookItem = id => {
     Taro.navigateTo({
-      url: `/pages/book/item?itemId=${item.id}`
+      url: `/pages/book/item?itemId=${id}`
     });
   };
 

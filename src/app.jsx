@@ -24,7 +24,7 @@ class App extends Component {
     pages: [
       'pages/index/home',  //@TODO 测试学习用的page，将来要改成欢迎首页
       // 'pages/book/book',    //菜谱时间线界面
-      // 'pages/book/item',    //菜谱详情界面
+      'pages/book/item',    //菜谱详情界面
       'pages/book-create/index',  //创建菜谱
       'pages/book-create/select',  //创建菜谱
       'pages/book-create/advanced',  //创建菜谱-进阶设置
