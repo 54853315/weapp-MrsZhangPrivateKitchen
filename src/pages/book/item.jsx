@@ -155,13 +155,16 @@ export default class BookItem extends Component {
           <View className="item-comment-content">你做的菜很棒啊!</View>
         </View>
 
+        <View style="background:#f4f4f4;height:10px;"></View>
+
         {/* 猜你喜欢区域 */}
         <AtTabs current={this.state.current} tabList={tabList}>
           <AtTabsPane current={this.state.current} index={0}>
-            <View style="background-color: #FAFBFC;">
+            <View className="recommend__list">
               <View className="at-row at-row--wrap">
-                <Image src={img1} className="tl-list-img at-col at-col-6" />
-                <Image src={img1} className="tl-list-img at-col at-col-6" />
+                <Image src={img1} className="recommend__list-img at-col at-col-4" />
+                <Image src={img1} className="recommend__list-img at-col at-col-4" />
+                <Image src={img1} className="recommend__list-img at-col at-col-4" />
                 <AtTag
                   onClick={goToTagPage.bind(this, 1)}
                   name="tag-1"
@@ -186,6 +189,7 @@ export default class BookItem extends Component {
             </View>
           </AtTabsPane>
         </AtTabs>
+
       </View>
     );
   }
