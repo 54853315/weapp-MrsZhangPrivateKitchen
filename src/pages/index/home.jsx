@@ -1,10 +1,10 @@
 import Taro, { Component, useEffect } from "@tarojs/taro";
 import { View, Text, Image, ScrollView } from "@tarojs/components";
 import { AtNoticebar } from "taro-ui";
+import * as actions from '@actions/home'
 import { getWindowHeight } from '@utils/style'
 import { Loading,Timeline } from "@widgets";
-// import Recommend from "./recommend";
-// import { connect } from "@tarojs/redux";
+import { connect } from "@tarojs/redux";
 import "./home.scss";
 
 // import { lifeCycleRecorder } from "../../tools";
@@ -12,7 +12,7 @@ import "./home.scss";
 
 const RECOMMEND_SIZE = 20;
 
-// @connect(state => state.home, { ...actions, dispatchCartNum })
+@connect(state => state.home, { ...actions })
 class Home extends Component {
   
   config = {
