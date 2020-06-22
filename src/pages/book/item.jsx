@@ -74,6 +74,13 @@ export default class BookItem extends Component {
     Taro.navigateTo({ url: `/pages/show-image/index?url=${src}` });
   }
 
+  handleImageClick = (image) => {
+    Taro.previewImage({
+      content:image,
+      urls:[image]
+    })
+  }
+
   handleDelete = () => {
     let that = this;
     const { id } = that.state;
@@ -125,7 +132,7 @@ export default class BookItem extends Component {
               files.map((img, imgKey) => (
                 <SwiperItem key={imgKey}>
                   <View className="item-banner-item">
-                    <Image className="item-banner-img" src={img} />
+                    <Image onClick={this.handleImageClick.bind(this,img)} className="item-banner-img" src={img} />
                   </View>
                 </SwiperItem>
               ))}
