@@ -173,8 +173,10 @@ export default class BookCreateSelect extends Component {
   }
 
   handleImageClick(index, file) {
-    //@TODO 预览图片
-    console.log(index, file);
+    Taro.previewImage({
+      content:file.url,
+      urls:[file.url]
+    })
   }
 
   // handleImageChange = files => {
