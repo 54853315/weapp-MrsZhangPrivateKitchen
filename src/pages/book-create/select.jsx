@@ -32,7 +32,6 @@ export default class BookCreateSelect extends Component {
       formData: {
         id: 0,
         intro: "", //介绍信息
-        shareWechatFirendsZone: false, //分享到朋友圈
         commentClose: false, //评论开关
         files: []
         // 重组结构为这样的files：
@@ -55,7 +54,6 @@ export default class BookCreateSelect extends Component {
       formData: {
         id: 0,
         intro: "", //介绍信息
-        shareWechatFirendsZone: false, //分享到朋友圈
         commentClose: false, //评论开关
         files: []
       }
@@ -150,13 +148,7 @@ export default class BookCreateSelect extends Component {
       this.topic.refresh(list);
     }, 1000);
   };
-
-  handleShareWechatFirndsZoneClick = e => {
-    this.setState({
-      formData: { ...this.state.formData, shareWechatFirendsZone: e }
-    });
-  };
-
+  
   handleCommentClick = e => {
     this.setState({ formData: { ...this.state.formData, commentClose: e } });
   };
@@ -262,6 +254,7 @@ export default class BookCreateSelect extends Component {
       this.props
         .dispatchStore(payload)
         .then(res => {
+          Taro.hideNavigationBarLoading();
           Taro.atMessage({
             message: "发布成功！恭喜你呀恭喜你！",
             type: "success"
@@ -331,13 +324,6 @@ export default class BookCreateSelect extends Component {
           {/* 底部区域 */}
           {!this.hasTopic && (
             <AtList hasBorder={false}>
-              {/* 分享到朋友圈 */}
-              <AtSwitch
-                border={false}
-                title="分享到朋友圈"
-                checked={this.state.shareWechatFirendsZone}
-                onChange={this.handleShareWechatFirndsZoneClick}
-              />
 
               {/* 评论开关 */}
               <AtSwitch

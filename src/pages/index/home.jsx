@@ -7,7 +7,7 @@ import { Loading,Timeline } from "@widgets";
 import { connect } from "@tarojs/redux";
 import "./home.scss";
 
-const RECOMMEND_SIZE = 20;
+const RECOMMEND_SIZE = 5;
 
 @connect(state => state.home, { ...actions })
 
@@ -26,7 +26,7 @@ class Home extends Component {
   state = {
     loaded: false,
     loading: false,
-    // lastItemId: 0,
+    skip: 0,
     hasMore: true
   };
 
@@ -55,52 +55,27 @@ class Home extends Component {
       return;
     }
 
+    const skip = this.state.skip;
     const payload = {
-      lastItemId: this.state.lastItemId,  // NOTE 目前意义不大
-      limit: RECOMMEND_SIZE
+      limit: RECOMMEND_SIZE,
+      skip: skip,
     };
+    this.setState({ loading: true })
+    Taro.showNavigationBarLoading()
     this.props
       .dispatchRecommend(payload)
       .then(res => {
-        const lastItem = res.rcmdItemList[res.result.length - 1];
         this.setState({
           loading: false,
-          hasMore: res.hasMore,
-          lastItemId: lastItem && lastItem.id
+          hasMore: res.total <= skip ? false : true,
+          skip: skip+RECOMMEND_SIZE,
         });
+        Taro.hideNavigationBarLoading()
       })
       .catch(() => {
         this.setState({ loading: false });
-      });  
+      });
   };
-
-
-  //NOTE useReducer()
-
-  // const [state,dispatch] = useReducer([],initialState,init)
-
-  // NOTE  useState() 严苛
-  // const [user,setUser] = useState(null)
-  // const [foodCount,setFoodCount] = useState(0)
-  // const [items,setItems] = useState(null)
-  // const [isOnline,setIsOnline] = useState(null)
-  // const [loaded,setLoaded] = useState(null)
-
-  // const userLogin = () => setIsOnline(true)
-  // const userLogout = () => setIsOnline(false)
-
-  //NOTE userState() 惰性
-  // const [modal,updateModal] = useState({user:null,foodCount:null,items:null,isOnline:null,loaded:null})
-
-  //
-  // useEffect(() => {
-  //   document.title = `宝宝啊，欢迎回来${user}`
-  //   lifeCycleRecorder()
-  // }, [])
-  // const goToCookBookCreate = () => {
-  //   Taro.navigateTo({ url: 'pages/book/create' })
-  //   // Taro.navigateTo({url:'pages/book/create='+id})  //带参数
-  // }
 
   render() {
     if (!this.state.loaded) {

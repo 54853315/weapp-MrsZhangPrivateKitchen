@@ -132,7 +132,7 @@ export default class BookItem extends Component {
               files.map((img, imgKey) => (
                 <SwiperItem key={imgKey}>
                   <View className="item-banner-item">
-                    <Image onClick={this.handleImageClick.bind(this,img)} className="item-banner-img" src={img} />
+                    <Image mode="aspectFill" onClick={this.handleImageClick.bind(this,img)} className="item-banner-img" src={img} />
                   </View>
                 </SwiperItem>
               ))}
@@ -193,7 +193,9 @@ export default class BookItem extends Component {
                 </Text>
               )}
             </View>
-            <View className="item-main-content">{itemInfo.content}</View>
+            <View className="item-main-content">
+              <Text>{itemInfo.content}</Text>
+              </View>
           </View>
 
           <AtDivider>

@@ -62,30 +62,20 @@ export default class Timeline extends Component {
                           {/* 右侧正文区域 */}
                           <View className="at-row at-row--wrap" style="width:100%">
                             {/* 图片 */}
-                            <Image
-                              src={book.file_url_json[0]}
-                              className="tl-list-img"
-                              onClick={goToBookItemPage.bind(this, book.id)}
-                            />
-                            <Image
-                              src={book.file_url_json[0]}
-                              className="tl-list-img"
-                              onClick={goToBookItemPage.bind(this, book.id)}
-                            />
-                            
-                            {/* {book.file_url_json != null &&
+                            {book.file_url_json != null &&
                               book.file_url_json.map((image, _) => {
                                 return (
                                   <Image
                                     src={image}
-                                    className="tl-list-img at-col at-col-6"
-                                    onClick={goToBookItemPage2.bind(
+                                    className="tl-list-img"
+                                    mode="aspectFill"
+                                    onClick={this.goToBookItemPage.bind(
                                       this,
                                       book.id
                                     )}
                                   />
                                 );
-                              })} */}
+                              })}
 
                             {/* 标签 */}
                             <View className="tl-list-tags">

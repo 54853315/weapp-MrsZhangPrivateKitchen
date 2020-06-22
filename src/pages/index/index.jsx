@@ -19,6 +19,34 @@ function Index() {
   //   duration: 5000
   // })
 
+
+  //NOTE useReducer()
+
+  // const [state,dispatch] = useReducer([],initialState,init)
+
+  // NOTE  useState() 严苛
+  // const [user,setUser] = useState(null)
+  // const [foodCount,setFoodCount] = useState(0)
+  // const [items,setItems] = useState(null)
+  // const [isOnline,setIsOnline] = useState(null)
+  // const [loaded,setLoaded] = useState(null)
+
+  // const userLogin = () => setIsOnline(true)
+  // const userLogout = () => setIsOnline(false)
+
+  //NOTE userState() 惰性
+  // const [modal,updateModal] = useState({user:null,foodCount:null,items:null,isOnline:null,loaded:null})
+
+  //
+  // useEffect(() => {
+  //   document.title = `宝宝啊，欢迎回来${user}`
+  //   lifeCycleRecorder()
+  // }, [])
+  // const goToCookBookCreate = () => {
+  //   Taro.navigateTo({ url: 'pages/book/create' })
+  //   // Taro.navigateTo({url:'pages/book/create='+id})  //带参数
+  // }
+  
   return (
     <View ClassName='home'>
       <View className='home__search'>

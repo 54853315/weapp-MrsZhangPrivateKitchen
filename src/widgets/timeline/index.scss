@@ -82,11 +82,12 @@ $tl-list-image-height:140px;
     &-txt {
       word-wrap: break-word;
       white-space: normal;
-      line-height: 40px;
+      line-height: 24px;
       letter-spacing: 1px;
       margin-bottom: 10px;
       font-size: 18px;
       color: rgba(0, 0, 0, 0.4);
+      @include lamp-clamp(2);
     }
     &-img {
       max-width: 45%;
