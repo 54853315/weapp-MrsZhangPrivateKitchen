@@ -10,9 +10,9 @@ export const host = HOST
 export const CDN = 'https://'
 
 // home
-export const API_HOME = `${host}/xhr/index/index.json`
-export const API_HOME_SEARCH_COUNT = `${host}/xhr/search/displayBar.json`
-export const API_HOME_RECOMMEND = `${host}/xhr/rcmd/index.json`
+export const API_HOME = `${host}/info`
+export const API_HOME_SEARCH_COUNT = `${host}`
+export const API_HOME_RECOMMEND = `${host}/books`
 
 // tag
 export const API_TAG_SEARCH = `${host}/tags`
@@ -20,10 +20,15 @@ export const API_TAG_SEARCH = `${host}/tags`
 // export const API_TAG_SUB_LIST = `${host}/xhr/list/l2Items2.json`
 
 // user
-export const API_USER = `${host}/xhr/user/getDetail.json`
-export const API_USER_LOGIN = `${host}/xhr/u/mailLogin.json`
-export const API_CHECK_LOGIN = `${host}/xhr/u/checkLogin.json`
+export const API_USER = `${host}/user/info`
+export const API_USER_LOGIN = `${host}/auth`
+export const API_CHECK_LOGIN = `${host}/user/check`
 
 // item
-export const API_ITEM = `${host}/xhr/item/detail.json`
-export const API_ITEM_RECOMMEND = `${host}/xhr/rcmd/itemDetail.json`
+export const API_ITEM = `${host}/books`
+export const API_ITEM_CHANGE_STATUS = `${host}/books/status/`
+export const API_ITEM_UPLOAD = `${host}/books/upload`
+
+// comment
+export const API_COMMENT = `${host}/comments`
+

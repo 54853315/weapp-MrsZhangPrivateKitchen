@@ -17,11 +17,13 @@ const sassImporter = function(url) {
 const config = {
   projectName: 'food',
   date: '2020-3-1',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     '640': 2.34 / 2,
     '750': 1,
-    '828': 1.81 / 2
+    '828': 1.81 / 2,
+    '375': 1 / 1.5,
+    '320':1/2,
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
@@ -49,6 +51,7 @@ const config = {
   alias: {
     '@actions': path.resolve(__dirname, '..', 'src/actions'),
     '@assets': path.resolve(__dirname, '..', 'src/assets'),
+    '@components': path.resolve(__dirname, '..', 'src/components'),
     '@widgets': path.resolve(__dirname, '..', 'src/widgets'),
     '@constants': path.resolve(__dirname, '..', 'src/constants'),
     '@reducers': path.resolve(__dirname, '..', 'src/reducers'),
@@ -61,6 +64,7 @@ const config = {
         enable: true,
         config: {}
       },
+      // 小程序端样式引用本地资源内联
       url: {
         enable: true,
         config: {

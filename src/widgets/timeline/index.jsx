@@ -2,137 +2,118 @@ import Taro, { Component, useEffect } from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
 import { AtLoadMore, AtTag } from "taro-ui";
 import "./index.scss";
-//NOTE 测试用图
-import Food1 from "@assets/foods/food1.jpeg";
-import Food2 from "@assets/foods/food2.jpeg";
-import Food3 from "@assets/foods/food3.jpeg";
-import Food4 from "@assets/foods/nf1.jpeg";
-import Food5 from "@assets/foods/nf2.jpg";
-import Food6 from "@assets/foods/nf3.jpeg";
-import { goToTagPage,goToBookItemPage } from "../../tools/index";
+import {
+  goToTagPage,
+  // goToBookItemPage,
+  getMDByDateTIme,
+  getBriefDate,
+  getBriefTime
+} from "../../tools/index";
 
 export default class Timeline extends Component {
   static defaultProps = {
     list: []
   };
 
+  //跳转到详情页面
+  goToBookItemPage = (id) => {
+    //NOTE 原来使用的是 import {goToBookItemPage} from "../../tools/index"; 但是在小程序上无效
+    Taro.navigateTo({
+      url: `/pages/book/item?itemId=${id}`
+    });
+  }
+
   render() {
     const { list } = this.props;
     return (
       <View className="at-row">
         <View className="">
-          {list.map((item, index) => {
-            const { id } = item;
+          {list.map((item, key) => {
+            const { books } = item;
+            // NOTE 由于小程序自身的bug，如果if中直接使用books.length 会报错；另外不应该用.length 做比较，而直接用null
+            //via : https://developers.weixin.qq.com/community/develop/doc/000c8a7eeb45e8b018b72f01356800
+
+            const outermostBook = books[0];
             return (
-              <View
-                className="timeline"
-                key="logistic~"
-                onClick={goToBookItemPage.bind(this, id)}
-              >
+              <View className="timeline" key={key}>
                 <View className="tl-time">
-                  <Text className="">03/17</Text>
+                  {/* 日期 */}
+                  <Text className="tl-time-txt">{getMDByDateTIme(outermostBook.created_at)}</Text>
                 </View>
 
                 <View className="tl-line">
+                  {/* 右侧顶部区域 */}
                   <View className="tl-top-line">
-                    <Text className="tl-top-line-txt">今天</Text>
+                    <Text className="tl-top-line-txt">
+                      {getBriefDate(outermostBook.created_at)}
+                    </Text>
                   </View>
-                  <View className="tl-list">
 
-                  <View className="tl-list-item">
-                      <View className="tl-list-time">刚刚</View>
-                      <View className="at-row at-row--wrap">
-                        <Image
-                          src={Food4}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        <Image
-                          src={Food5}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        <View className="tl-list-txt">
+                  {books.map(book => {
+                    return (
+                      <View className="tl-list" key={book.id}>
+                        {/* 时间段内循环 */}
+                        <View className="tl-list-item">
+                          <View className="tl-list-time">
+                            {/* 时间 */}
+                            {getBriefTime(book.created_at)}
+                          </View>
+
+                          {/* 右侧正文区域 */}
+                          <View className="at-row at-row--wrap" style="width:100%">
+                            {/* 图片 */}
+                            <Image
+                              src={book.file_url_json[0]}
+                              className="tl-list-img"
+                              onClick={goToBookItemPage.bind(this, book.id)}
+                            />
+                            <Image
+                              src={book.file_url_json[0]}
+                              className="tl-list-img"
+                              onClick={goToBookItemPage.bind(this, book.id)}
+                            />
+                            
+                            {/* {book.file_url_json != null &&
+                              book.file_url_json.map((image, _) => {
+                                return (
+                                  <Image
+                                    src={image}
+                                    className="tl-list-img at-col at-col-6"
+                                    onClick={goToBookItemPage2.bind(
+                                      this,
+                                      book.id
+                                    )}
+                                  />
+                                );
+                              })} */}
+
+                            {/* 标签 */}
+                            <View className="tl-list-tags">
+                              {book.tags != null &&
+                                book.tags.map(tag => {
+                                  return (
+                                    <AtTag
+                                      key={tag.id}
+                                      onClick={goToTagPage.bind(this, tag.id)}
+                                      name="tag-1"
+                                      type="primary"
+                                      circle
+                                      active={true}
+                                      size="small"
+                                    >
+                                      {tag.name}
+                                    </AtTag>
+                                  );
+                                })}
+                            </View>
+
+                            {/* 介绍 */}
+                            <View className="tl-list-txt">{book.content}</View>
+                          </View>
                         </View>
-                        <AtTag
-                          onClick={goToTagPage.bind(this, id)}
-                          name="tag-1"
-                          type="primary"
-                          circle
-                          active="true"
-                          size="small"
-                        >
-                          粤系
-                        </AtTag>
-                        <AtTag
-                        onClick={goToTagPage.bind(this, id)}
-                          name="tag-1"
-                          type="primary"
-                          circle
-                          active="true"
-                          size="small"
-                        >
-                          欧式糕点
-                        </AtTag>
                       </View>
-                    </View>
-
-                    <View className="tl-list-item">
-                      <View className="tl-list-time">3分钟前</View>
-                      <View className="at-row at-row--wrap">
-                        <Image
-                          src={Food4}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        <Image
-                          src={Food5}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        <View className="tl-list-txt">
-                        </View>
-                        <AtTag
-                          onClick={goToTagPage.bind(this, id)}
-                          name="tag-1"
-                          type="primary"
-                          circle
-                          active="true"
-                          size="small"
-                        >
-                          中式糕点
-                        </AtTag>
-                        <AtTag
-                        onClick={goToTagPage.bind(this, id)}
-                          name="tag-1"
-                          type="primary"
-                          circle
-                          active="true"
-                          size="small"
-                        >
-                          西餐
-                        </AtTag>
-                      </View>
-                    </View>
-
-                    <View className="tl-list-item">
-                      <View className="tl-list-time">50分钟前</View>
-                      <View className="at-row at-row--wrap">
-                        <Image
-                          src={Food6}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        <Image
-                          src={Food2}
-                          className="tl-list-img at-col at-col-6"
-                        />
-                        {/* <Image
-                          src={Food3}
-                          className="tl-list-img at-col at-col-6"
-                        /> */}
-                      </View>
-                      <View className="tl-list-txt">
-                        今天的配菜是香葱简单奢华版，专门熊奶奶制作，希望她喜欢吧！下个月的零花钱我要200￥...
-                      </View>
-                      <View className="tl-list-jump">全文</View>
-                    </View>
-                  </View>
+                    );
+                  })}
                 </View>
               </View>
             );

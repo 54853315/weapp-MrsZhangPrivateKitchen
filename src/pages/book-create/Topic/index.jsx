@@ -18,6 +18,7 @@ export default class Topic extends Component {
     list: []
   };
 
+    //父类调用,ref
   refresh(data) {
     this.setState({
       loaded: true,

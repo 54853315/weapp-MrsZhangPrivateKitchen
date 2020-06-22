@@ -2,41 +2,54 @@
 
 .item {
   .at-tag {
-    margin-left: 0.5rem;
+    margin-left: 5px;
+    margin-bottom:5px;
   }
   &-avatar {
-    font-size: 0.65rem;
-    width: 8rem;
+    font-size: 16px;
+    width: 200px;
     position: absolute;
-    left: 0.5rem;
-    top: 13.5rem;
+    left: 15px;
+    top: 300px;
     z-index: 999;
     background: $white;
-    border-radius: 1.5rem;
+    border-radius: 15px;
+    object-fit: none;
+    object-position: center;
     span {
       position: relative;
-      top: -0.6rem;
+      top: -6px;
     }
     &-img {
+      width: 48px !important;
+      height: 48px !important;
       display: inline-block;
-      margin: 0.2rem 0.8rem 0 0.2rem;
+      margin: 5px 8px 0 5px;
       padding: 0;
       text-align: left;
       // box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+    }
+    &-txt{
+      position: relative;
+      top:-15px;
     }
   }
 
   // 正文信息
   &-main {
-    margin: 0.2rem 0.5rem 0.5rem 0.5rem;
-    font-size: 0.6rem;
+    margin: 2px 5px 5px 5px;
+    font-size: 18px;
     &-title {
-      font-size: 0.8rem;
+      font-size: 24px;
       color: $text-color;
     }
     &-date {
-      padding: 0.2rem 0 0.2rem 0;
+      padding: 2px 0 2px 0;
       color: $text-color-lighter;
+      &-delete-btn{
+        margin-left:15px;
+        color: $blue;
+      }
     }
     &-content {
       color: $text-color;
@@ -46,9 +59,9 @@
   // 幻灯片
   &-banner {
     // width:750;
-    height: 14.5rem;
+    height: 410px;
     &-item {
-      height: 15rem;
+      height: 400px;
       transition: transform 500ms;
       transform: scale(0.95, 0.9); /* 因为非主图看不清，所以可以变形处理 */
       //   border-radius: 8px;
@@ -71,20 +84,20 @@
       position: absolute;
       height: 0;
       //以下是三角箭头样式
-      border: 0.3rem solid $white;
+      border: 3px solid $white;
       border-top-color: #dedede;
-      top: 0.05rem;
-      right: 6.8rem;
+      top: 0.5px;
+      right: 68px;
     }
   }
 
   //评论区
   &-comment {
-    font-size: 0.55rem;
-    margin: 0.5rem 0 1rem 0;
+    font-size: 18px;
+    margin: 5px 0 10px 0;
     &-avatar {
-      padding-left: 0.5rem;
-      top: -0.5rem;
+      padding-left: 5px;
+      top: -5px;
       position: relative;
     }
     &-nickname {
@@ -94,30 +107,30 @@
       color: $text-color-light;
     }
     &-content {
-      margin: 0 0.5rem 0 0.5rem;
-      font-size: 0.7rem;
+      margin: 0 5px 0 5px;
+      font-size: 18px;
     }
   }
 }
 
 // 幻灯片 控制点在右下方
 .swiper-pagination-bullets {
-  left: 6rem !important;
-  bottom: 1rem !important;
+  left: 60px !important;
+  bottom: 10px !important;
 }
 
 .recommend__list {
-  margin:0.3rem 0 1.5rem 0;
+  margin: 3px 0 15px 0;
   // background-color: #fafbfc;
   &-img {
-    max-width: 5.6rem;
-    height: 4rem;
+    max-width: 56px;
+    height: 40px;
     display: list-item;
     //background: $grey_bg;
     border-radius: 10px;
     // border: 4px solid #ededed;
     overflow: hidden;
-    padding-left:10px;
+    padding-left: 10px;
     margin-bottom: 10px;
     //  知识点： https://segmentfault.com/a/1190000011874066
 

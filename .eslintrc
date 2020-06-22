@@ -2,7 +2,12 @@
   "extends": ["taro"],
   "rules": {
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".tsx"] }
+    ]
   },
-    "parser": "babel-eslint"
-  }
+  "parser": "babel-eslint",
+  "quotes": [1, "single"],//引号类型 `` "" ''
+  "quote-props":[2, "always"],//对象字面量中的属性名是否强制双引号
+}

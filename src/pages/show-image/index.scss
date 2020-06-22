@@ -1,0 +1,14 @@
+page {
+    background: white;
+  }
+  
+  .image-container {
+    height: 100vh;
+  
+    image {
+      width: 504rpx;
+      height: 504rpx;
+      flex-shrink: 0;
+    }
+  }
+  

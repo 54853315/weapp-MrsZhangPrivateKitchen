@@ -1,5 +1,5 @@
-import Taro, { Component, useEffect } from "@tarojs/taro";
-import { View, Text, Image, ScrollView } from "@tarojs/components";
+import Taro, { Component } from "@tarojs/taro";
+import { View, Text, ScrollView } from "@tarojs/components";
 import { AtNoticebar } from "taro-ui";
 import * as actions from '@actions/home'
 import { getWindowHeight } from '@utils/style'
@@ -7,12 +7,10 @@ import { Loading,Timeline } from "@widgets";
 import { connect } from "@tarojs/redux";
 import "./home.scss";
 
-// import { lifeCycleRecorder } from "../../tools";
-// import searchIcon from './assets/search.png'
-
 const RECOMMEND_SIZE = 20;
 
 @connect(state => state.home, { ...actions })
+
 class Home extends Component {
   
   config = {
@@ -28,13 +26,28 @@ class Home extends Component {
   state = {
     loaded: false,
     loading: false,
-    lastItemId: 0,
-    hasMore: true,
-    timelines: []
+    // lastItemId: 0,
+    hasMore: true
   };
 
-  componentDidMount() {
-    this.loadRecommend();
+  componentWillMount(){
+    Taro.showShareMenu()
+  }
+
+  onShareAppMessage(res){
+    console.log("onShareAppMessage res=>",res)
+    return {
+      title:"我在小张私厨发现了很多美味的私房菜噢～快来看看小张有多厉害！",
+      path:"/pages/index/home",
+    }
+  }
+
+  componentDidShow() {
+    this.props.dispatchHome().then(() => {
+      this.setState({ loaded: true })
+    })
+    // this.props.dispatchSearchCount()
+    this.loadRecommend()
   }
 
   loadRecommend = () => {
@@ -42,32 +55,23 @@ class Home extends Component {
       return;
     }
 
-
-    let lists = [
-      { id: 1, name: "a" },
-      { id: 2, name: "b" }
-    ];
-
-    this.setState({ loading: false, loaded: true,timelines: lists });
-    
-    
-    // const payload = {
-    //   lastItemId: this.state.lastItemId,
-    //   size: RECOMMEND_SIZE
-    // };
-    // this.props
-    //   .dispatchRecommend(payload)
-    //   .then(res => {
-    //     const lastItem = res.rcmdItemList[res.rcmdItemList.length - 1];
-    //     this.setState({
-    //       loading: false,
-    //       hasMore: res.hasMore,
-    //       lastItemId: lastItem && lastItem.id
-    //     });
-    //   })
-    //   .catch(() => {
-    //     this.setState({ loading: false });
-    //   });
+    const payload = {
+      lastItemId: this.state.lastItemId,  // NOTE 目前意义不大
+      limit: RECOMMEND_SIZE
+    };
+    this.props
+      .dispatchRecommend(payload)
+      .then(res => {
+        const lastItem = res.rcmdItemList[res.result.length - 1];
+        this.setState({
+          loading: false,
+          hasMore: res.hasMore,
+          lastItemId: lastItem && lastItem.id
+        });
+      })
+      .catch(() => {
+        this.setState({ loading: false });
+      });  
   };
 
 
@@ -103,7 +107,7 @@ class Home extends Component {
       return <Loading />;
     }
 
-    const { timelines } = this.state;
+    const { homeInfo,timelines } = this.props;
     return (
       <View ClassName="home">
         <AtNoticebar icon="volume-plus" marquee>
@@ -119,39 +123,7 @@ class Home extends Component {
         >
           
           <Timeline list={timelines} /> 
-
-          {/* <AtButton type="primary">按钮文案</AtButton> */}
-
-          {/* 
-        {girls.map((item, index) => {
-          return (
-            <View key={{ index }}>{item.id}:{item.name}</View>
-          )
-        })} */}
-
           <View>
-            {/* 练手写一下 */}
-            {/* <View className="home-recommend">
-              <View className="home-recommend__title">
-                <Text className="home-recommend__title-txt">为您推荐</Text>
-              </View>
-            </View>
-
-            <View clasName="home-recommend__list">
-              
-              <View className="home-recommend__list-item">
-                <Image className="home-recommend__list-item-img" />
-                <Text className="home-recommend__list-item-desc" numberOfLines={1}>
-                desc...
-                </Text>
-              </View>
-
-            </View> */}
-
-            {/* <Banner list={homeInfo.focus} /> */}
-
-            {/* 为你推荐 */}
-            {/* <Recommend list={recommend} /> */}
 
             {this.state.loading && (
               <View className="home__loading">
