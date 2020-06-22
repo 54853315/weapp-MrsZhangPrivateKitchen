@@ -166,7 +166,7 @@ export default class BookCreateSelect extends Component {
     var userLogined = uid > 0 ? true : false;
     this.setState({ userLogined: userLogined });
     if (!userLogined) {
-      Taro.navigateTo({
+      Taro.redirectTo({
         url: `/pages/user-login/wechat`
       });
     }

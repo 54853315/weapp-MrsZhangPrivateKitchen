@@ -19,31 +19,6 @@ class Wechat extends Component {
     super(props);
   }
 
-  componentWillUnmount() {
-
-    var pagesArray = Taro.getCurrentPages();
-    console.error("pagesArray",pagesArray);
-    pagesArray.map(item => {
-      //判断来源如果是二次跳，则跳回业务页面；否则正常返回上一页。
-      if (item.route.indexOf("book-create") != -1) {
-        //NOTE 兼容H5和小程序的跳转
-        console.log("即将跳转回book-create")
-        Taro.switchTab({
-          url: "/pages/index/home",
-          success: res => {
-            //NOTE 解决switchtab后不刷新页面的问题
-            var page = Taro.getCurrentPages().pop();
-            if (page == undefined || page == null) return;
-            page.onLoad();
-          }
-        });
-        return false;
-      }
-    });
-    //可能跳的时候带个参数，这样那边优先处理参数，就不会在跳转了
-    // Taro.navigateBack({ delta: 2 });
-  }
-
   agreeAuth = userData => {
     console.log(userData, "check userData");
     const { errMsg, userInfo } = userData.detail;
@@ -67,8 +42,9 @@ class Wechat extends Component {
                   title: "感谢使用",
                   icon: "none"
                 });
-                Taro.navigateBack({ delta: 2 });
-                //@TODO 最好能用redirectTo关闭当前页跳转至其他页面，不过由于不能跳转tabbar，比较坑叠
+                Taro.switchTab({
+                  url: "/pages/index/home",
+                });
               })
               .catch(() => {});
           } else {
