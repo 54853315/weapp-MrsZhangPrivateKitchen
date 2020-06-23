@@ -35,7 +35,6 @@ class Home extends Component {
   }
 
   onShareAppMessage(res){
-    console.log("onShareAppMessage res=>",res)
     return {
       title:"我在小张私厨发现了很多美味的私房菜噢～快来看看小张有多厉害！",
       path:"/pages/index/home",
@@ -81,7 +80,6 @@ class Home extends Component {
     if (!this.state.loaded) {
       return <Loading />;
     }
-
     const { homeInfo,timelines } = this.props;
     return (
       <View ClassName="home">

@@ -44,13 +44,12 @@ class App extends Component {
     pages: [
       "pages/index/home",
       "pages/book/item", //菜谱详情界面
-      "pages/book-create/index", //创建菜谱
       "pages/book-create/select", //创建菜谱
       // 'pages/book-create/advanced',  //创建菜谱-进阶设置
-      // 'pages/book/edit',  //编辑菜谱页面
-      // 'pages/search/index', //搜索页面
+      // 'pages/book/edit',  //TODO 编辑菜谱页面
+      // 'pages/search/index', //TODO 搜索页面
       "pages/user-login/wechat", //微信登录注册页面
-      // 'pages/user-login/mobile' //手机登录注册页面
+      // 'pages/user-login/mobile' //TODO 手机登录注册页面
       "pages/user/user",
       "pages/show-image/index" //图片查看
     ],

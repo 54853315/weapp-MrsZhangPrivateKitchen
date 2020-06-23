@@ -2,7 +2,6 @@ import Taro, { Component } from "@tarojs/taro";
 import { View, Text } from "@tarojs/components";
 import { AtList, AtListItem } from "taro-ui";
 import { getWindowHeight } from "@utils/style";
-import fetch from "@utils/request";
 import { Loading } from "@widgets";
 import "./index.scss";
 import hash from "@assets/hash.png";
@@ -14,7 +13,6 @@ export default class Topic extends Component {
 
   state = {
     loaded: false,
-    // loading: false,
     list: []
   };
 
@@ -34,7 +32,6 @@ export default class Topic extends Component {
       <View className='topic' style={getWindowHeight()}>
         <AtList>
           {this.state.list
-            //   .filter(item => item.type === 1)
             .map(item => {
               const { id, name } = item;
               return (
@@ -43,7 +40,6 @@ export default class Topic extends Component {
                   hasBorder={false}
                   onClick={this.props.handleClick.bind(this, name, id)}
                   title={name}
-                  //   arrow="right"
                   thumb={hash}
                 />
               );

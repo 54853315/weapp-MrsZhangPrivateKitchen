@@ -16,12 +16,12 @@ export default class Timeline extends Component {
   };
 
   //跳转到详情页面
-  goToBookItemPage = (id) => {
+  goToBookItemPage = id => {
     //NOTE 原来使用的是 import {goToBookItemPage} from "../../tools/index"; 但是在小程序上无效
     Taro.navigateTo({
       url: `/pages/book/item?itemId=${id}`
     });
-  }
+  };
 
   render() {
     const { list } = this.props;
@@ -32,22 +32,27 @@ export default class Timeline extends Component {
             const { books } = item;
             // NOTE 由于小程序自身的bug，如果if中直接使用books.length 会报错；另外不应该用.length 做比较，而直接用null
             //via : https://developers.weixin.qq.com/community/develop/doc/000c8a7eeb45e8b018b72f01356800
-
             const outermostBook = books[0];
             return (
               <View className="timeline" key={key}>
-                <View className="tl-time">
-                  {/* 日期 */}
-                  <Text className="tl-time-txt">{getMDByDateTIme(outermostBook.created_at)}</Text>
-                </View>
+                {!!outermostBook && (
+                  <View className="tl-time">
+                    {/* 日期 */}
+                    <Text className="tl-time-txt">
+                      {getMDByDateTIme(outermostBook.created_at)}
+                    </Text>
+                  </View>
+                )}
 
                 <View className="tl-line">
                   {/* 右侧顶部区域 */}
-                  <View className="tl-top-line">
-                    <Text className="tl-top-line-txt">
-                      {getBriefDate(outermostBook.created_at)}
-                    </Text>
-                  </View>
+                  {!!outermostBook && (
+                    <View className="tl-top-line">
+                      <Text className="tl-top-line-txt">
+                        {getBriefDate(outermostBook.created_at)}
+                      </Text>
+                    </View>
+                  )}
 
                   {books.map(book => {
                     return (
@@ -60,7 +65,10 @@ export default class Timeline extends Component {
                           </View>
 
                           {/* 右侧正文区域 */}
-                          <View className="at-row at-row--wrap" style="width:100%">
+                          <View
+                            className="at-row at-row--wrap"
+                            style="width:100%"
+                          >
                             {/* 图片 */}
                             {book.file_url_json != null &&
                               book.file_url_json.map((image, _) => {
