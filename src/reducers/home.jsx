@@ -28,7 +28,10 @@ export default function home(state = INITIAL_STATE, action) {
       } else {
         return {
           ...state,
-          timelines: state.timelines.concat(action.payload.result)
+          timelines:
+            action.payload.skip == 0
+              ? action.payload.result
+              : state.timelines.concat(action.payload.result)
         };
       }
     }

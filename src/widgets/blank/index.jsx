@@ -5,13 +5,11 @@ import "./index.scss";
 
 export default class Blank extends Component {
   render() {
-    if (!this.props.hasListData) {
-      return (
-        <View className="blank">
-          <Image className="at-article__img" src={img} mode="widthFix" />
-          <View className="blank-text">暂时没有数据～</View>
-        </View>
-      );
-    }
+    return (
+      <View className="blank">
+        <Image className="blank-img" src={img} mode="heightFix" />
+        <View className="blank-text">暂时没有数据～</View>
+      </View>
+    );
   }
 }

@@ -1,11 +1,12 @@
-// For AtArticle
-@import "~taro-ui/dist/style/components/article.scss";
-
 // Custom theme
 @import "@styles/theme.scss";
 
 .blank{
     margin-top:200px;
+    text-align: center; 
+    &-img{
+        height:200px;
+    }
     &-text{
         font-size:36px;
         color:$cozy_black;

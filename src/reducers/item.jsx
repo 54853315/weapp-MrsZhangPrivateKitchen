@@ -1,7 +1,7 @@
 import { ITEM_INFO, ITEM_RECOMMEND,ITEM_POST,ITEM_UPLOAD,ITEM_TAG } from '@constants/item'
 
 const INITIAL_STATE = {
-  itemInfo: {}
+  itemInfo: null
 }
 
 export default function item(state = INITIAL_STATE, action) {

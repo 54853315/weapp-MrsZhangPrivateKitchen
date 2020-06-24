@@ -1,8 +1,11 @@
+const HOST = '"https://food.crazyphper.com/api"'
 module.exports = {
   env: {
     NODE_ENV: '"production"'
   },
-  defineConstants: {},
+  defineConstants: {
+    HOST: isH5 ? '"/api"' : HOST
+  },
   mini: {},
   h5: {
     /**

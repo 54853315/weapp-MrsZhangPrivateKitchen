@@ -7,7 +7,6 @@ import {
   AtListItem,
   AtMessage,
   AtImagePicker,
-  AtForm,
   AtSwitch
 } from "taro-ui";
 import { ButtonItem } from "@components";
@@ -27,7 +26,7 @@ export default class BookCreateSelect extends Component {
   constructor() {
     super(...arguments);
     this.state = {
-      submitFlag:false,
+      submitFlag: false,
       userLogined: false,
       formData: {
         id: 0,
@@ -61,9 +60,7 @@ export default class BookCreateSelect extends Component {
     });
   }
 
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
   refTopic = node => (this.topic = node);
   refFile = node => (this.file = node);
@@ -148,7 +145,7 @@ export default class BookCreateSelect extends Component {
       this.topic.refresh(list);
     }, 1000);
   };
-  
+
   handleCommentClick = e => {
     this.setState({ formData: { ...this.state.formData, commentClose: e } });
   };
@@ -166,9 +163,9 @@ export default class BookCreateSelect extends Component {
 
   handleImageClick(index, file) {
     Taro.previewImage({
-      content:file.url,
-      urls:[file.url]
-    })
+      content: file.url,
+      urls: [file.url]
+    });
   }
 
   // handleImageChange = files => {
@@ -261,12 +258,18 @@ export default class BookCreateSelect extends Component {
           });
           //清理当前state
           setTimeout(() => {
-            Taro.switchTab(
-              {
-                url: `/pages/index/home`
-              },
-              that.initState()
-            );
+            that.initState();
+            Taro.switchTab({
+              url: `/pages/index/home`,
+              success: (res)=> {
+                var page = getCurrentPages().pop();
+                if (page == undefined || page == null) {
+                  return;
+                } else {
+                  page.onLoad();
+                }
+              }
+            });
           }, 1500);
         })
         .catch(error => {
@@ -296,54 +299,52 @@ export default class BookCreateSelect extends Component {
 
         <AtMessage />
 
-        <AtForm>
-          {/* 描述输入 */}
-          <AtTextarea
-            className="intro"
-            count={false}
-            value={formData.intro}
-            onChange={this.handleIntroTyping.bind(this)}
-            maxLength={400}
-            autoFocus={true}
-            placeholder="请描述这是一道什么菜，或者你的心情..."
+        {/* 描述输入 */}
+        <AtTextarea
+          className="intro"
+          count={false}
+          value={formData.intro}
+          onChange={this.handleIntroTyping.bind(this)}
+          maxLength={400}
+          autoFocus={true}
+          placeholder="tip:请描述这是一道什么菜，或者你的心情..."
+        />
+        {/* 话题标签选择 */}
+        {this.hasTopic && (
+          <Topic handleClick={this.handleTopicClick} ref={this.refTopic} />
+        )}
+        {/* 选择图片 */}
+        {!this.hasTopic && (
+          <AtImagePicker
+            // mode="top"
+            files={formData.files}
+            onChange={this.handleImageChange.bind(this)}
+            onImageClick={this.handleImageClick.bind(this)}
+            count={9}
           />
-          {/* 话题标签选择 */}
-          {this.hasTopic && (
-            <Topic handleClick={this.handleTopicClick} ref={this.refTopic} />
-          )}
-          {/* 选择图片 */}
-          {!this.hasTopic && (
-            <AtImagePicker
-              // mode="top"
-              files={formData.files}
-              onChange={this.handleImageChange.bind(this)}
-              onImageClick={this.handleImageClick.bind(this)}
-              count={9}
-            />
-          )}
-          {/* 底部区域 */}
-          {!this.hasTopic && (
-            <AtList hasBorder={false}>
+        )}
+        {/* 底部区域 */}
 
-              {/* 评论开关 */}
-              <AtSwitch
+        {!this.hasTopic && (
+          <AtList hasBorder={false}>
+            {/* 评论开关 */}
+            {/* <AtSwitch
                 border={false}
                 title="关闭评论功能"
                 disabled
                 checked={this.state.commentClose}
                 onChange={this.handleCommentClick}
-              />
+              /> */}
 
-              {/* 替代文字 */}
-              {/* <AtListItem
+            {/* 替代文字 */}
+            {/* <AtListItem
                 hasBorder={false}
                 title="输入替代文字"
                 note=""
                 arrow="right"
               /> */}
-            </AtList>
-          )}
-        </AtForm>
+          </AtList>
+        )}
 
         {!this.hasTopic && (
           <ButtonItem
@@ -353,7 +354,7 @@ export default class BookCreateSelect extends Component {
             disabled={submitFlag}
             onClick={this.handleSubmit}
             compStyle={{
-              background: "#b59f7b",
+              // background: "#b59f7b",
               width: "80%",
               marginTop: "50px",
               position: "absolute",

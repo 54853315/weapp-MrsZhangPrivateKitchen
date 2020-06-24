@@ -37,17 +37,21 @@
 
   // 正文信息
   &-main {
-    margin: 2px 5px 5px 5px;
-    font-size: 18px;
+    //margin: 2px 5px 5px 5px;
+    margin:14px;
+    // margin-top:0px;
+    font-size: 22px;
     &-title {
       font-size: 24px;
       color: $text-color;
     }
     &-date {
-      padding: 2px 0 2px 0;
+      padding: 2px 0 20px 0;
       color: $text-color-lighter;
       &-delete-btn{
-        margin-left:15px;
+        margin-right:15px;
+        position:absolute;
+        right:0;
         color: $blue;
       }
     }
@@ -58,14 +62,11 @@
 
   // 幻灯片
   &-banner {
-    // width:750;
     height: 410px;
     &-item {
       height: 400px;
-      transition: transform 500ms;
-      transform: scale(0.95, 0.9); /* 因为非主图看不清，所以可以变形处理 */
-      //   border-radius: 8px;
-      //   box-shadow: 0px 6px 10px 0px rgba(179, 154, 139, 1);
+      // transition: transform 500ms;
+      // transform: scale(0.95, 0.9); /* 因为非主图看不清，所以可以变形处理 */
     }
     &-img {
       width: 100%;
@@ -73,22 +74,12 @@
     }
   }
 
-  // 分割线，带用户头像定位样式 废弃
+  // 分割线
   &-divider-with-avatar-anchor {
     background: linear-gradient(to right, #efefef, $blue, $blue, #efefef);
     height: 1px;
     // border-top: 0.07rem solid $blue;
     position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      height: 0;
-      //以下是三角箭头样式
-      border: 3px solid $white;
-      border-top-color: #dedede;
-      top: 0.5px;
-      right: 68px;
-    }
   }
 
   //评论区

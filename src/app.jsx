@@ -31,7 +31,7 @@ class App extends Component {
           duration: 6000
         });
       } else {
-        Taro.reLaunch({url:'/pages/index/home'})
+        // Taro.reLaunch({url:'/pages/index/home'})
       }
     });
   }
@@ -67,7 +67,7 @@ class App extends Component {
       list: [
         {
           pagePath: "pages/index/home",
-          iconPath: "./assets/tab-bar/home2.png",
+          iconPath: "./assets/tab-bar/home.png",
           selectedIconPath: "./assets/tab-bar/home-active.png",
           text: "首页"
         },
