@@ -34,7 +34,7 @@ export default class Timeline extends Component {
             //via : https://developers.weixin.qq.com/community/develop/doc/000c8a7eeb45e8b018b72f01356800
             const outermostBook = books[0];
             return (
-              <View className="timeline" key={key}>
+              <View className="timeline" key={index}>
                 {!!outermostBook && (
                   <View className="tl-time">
                     {/* 日期 */}

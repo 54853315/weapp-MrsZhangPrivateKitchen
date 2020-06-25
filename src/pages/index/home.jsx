@@ -36,7 +36,7 @@ class Home extends Component {
 
   onShareAppMessage(res) {
     return {
-      title: "我在小张私厨发现了很多美味的私房菜噢～快来看看小张有多厉害！",
+      title: "我在小张炫酷生活发现了很多美味的私房菜噢～快来看看小张有多厉害！",
       path: "/pages/index/home"
     };
   }
@@ -88,8 +88,8 @@ class Home extends Component {
     const { homeInfo, timelines } = this.props;
     return (
       <View ClassName="home">
-        <AtNoticebar icon="volume-plus" marquee>
-          小张私厨小程序，主要是为了取悦张奶油同学。
+        <AtNoticebar icon="volume-plus" marquee className="home__noticebar">
+        小张炫酷生活小程序，主要是为了取悦张奶油。
         </AtNoticebar>
 
         <ScrollView

@@ -4,7 +4,7 @@ import { Provider } from "@tarojs/redux";
 import configStore from "./store";
 import "./app.scss";
 import { normalWxlLogin } from "@utils/user";
-import "taro-ui/dist/style/index.scss"; // 全局引入一次即可
+import "taro-ui/dist/style/index.scss"; // Taro-UI全局引入一次即可
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：

@@ -11,7 +11,7 @@ import "./user.scss";
 // @connect(state => state.user, { ...actions })
 export default class User extends Component {
   config = {
-    navigationBarTitleText: "小张私厨会员"
+    navigationBarTitleText: "小张炫酷会员"
   };
 
   constructor() {

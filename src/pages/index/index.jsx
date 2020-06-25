@@ -10,11 +10,11 @@ const RECOMMEND_SIZE = 20
 function Index() {
 
   // config = {
-  //   navigationBarTitleText: '小张私厨'
+  //   navigationBarTitleText: '小张炫酷生活'
   // }
 
   // Taro.showToast({
-  //   title: '欢迎使用，爱你么么哒之小张私厨小程序',
+  //   title: '欢迎使用，爱你么么哒之小张炫酷生活小程序',
   //   icon: 'none',
   //   duration: 5000
   // })

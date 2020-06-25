@@ -56,7 +56,7 @@ export default class BookItem extends Component {
     const { name } = this.props.itemInfo.user;
     const { image } = this.props.itemInfo.file_url_json[0];
     return {
-      title: "我在小张私厨上看到这道菜美极了～快来看看有多厉害！",
+      title: "我在小张炫酷生活上看到这道菜美极了～快来看看有多厉害！",
       desc: "作者：" + name,
       path: `/pages/book/item?itemId=${id}`,
       imageUrl: image //显示图片长宽比5:4
@@ -128,11 +128,13 @@ export default class BookItem extends Component {
     if (!this.state.loaded) {
       return <Loading />;
     }
+    if (!itemInfo){
+      return <Blank />
+    }
+
     return (
       <View className="item">
-        {!itemInfo && <Blank />}
-        {itemInfo && (
-          <View>
+        <View>
             <Swiper
               className="item-banner"
               indicatorColor="#999"
@@ -296,7 +298,6 @@ export default class BookItem extends Component {
             </AtTabsPane>
           </AtTabs> */}
           </View>
-        )}
       </View>
     );
   }
