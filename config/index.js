@@ -1,5 +1,6 @@
 const path = require('path')
 
+
 // NOTE 在 sass 中通过别名（@ 或 ~）引用需要指定路径
 const sassImporter = function(url) {
   if (url[0] === '~' && url[1] !== '/') {
@@ -16,8 +17,8 @@ const sassImporter = function(url) {
 
 const config = {
   projectName: 'food',
-  date: '2020-3-1',
-  designWidth: 375,
+  date: '2020-6-29',
+  designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
     '750': 1,
@@ -29,23 +30,28 @@ const config = {
   outputRoot: 'dist',
   babel: {
     sourceMap: true,
-    presets: [['env', { modules: false }]],
+    presets: [
+      ['env', {
+        modules: false
+      }]
+    ],
     plugins: [
       'transform-decorators-legacy',
       'transform-class-properties',
       'transform-object-rest-spread',
       ['transform-runtime', {
-        "helpers": false,
-        "polyfill": false,
-        "regenerator": true,
-        "moduleName": 'babel-runtime'
-      }],
+          helpers: false,
+          polyfill: false,
+          regenerator: true,
+          moduleName: 'babel-runtime'
+        }
+      ]
     ]
   },
-  sass: {
-    importer: sassImporter
-  },
-  plugins: [],
+  plugins: [
+    '@tarojs/plugin-sass',
+    '@tarojs/plugin-terser'
+  ],
   defineConstants: {
   },
   alias: {
@@ -60,11 +66,22 @@ const config = {
   },
   mini: {
     postcss: {
+      autoprefixer: {
+        enable: true,
+        config: {
+          browsers: [
+            'last 3 versions',
+            'Android >= 4.1',
+            'ios >= 8'
+          ]
+        }
+      },
       pxtransform: {
         enable: true,
-        config: {}
+        config: {
+
+        }
       },
-      // 小程序端样式引用本地资源内联
       url: {
         enable: true,
         config: {
@@ -81,7 +98,6 @@ const config = {
     }
   },
   h5: {
-    esnextModules: ['taro-ui'],
     publicPath: '/',
     staticDirectory: 'static',
     postcss: {
@@ -103,9 +119,6 @@ const config = {
         }
       }
     }
-  },
-  sassLoaderOption: {
-    importer: sassImporter
   }
 }
 
