@@ -19,13 +19,13 @@ const sassImporter = function(url) {
 const config = {
   projectName: 'food',
   date: '2020-6-29',
-  designWidth: 750,
+  designWidth: 375,
   deviceRatio: {
     '320':1/2,
     '375': 1 / 1.5,
-    '640': 2.34 / 2,
-    '750': 1,
-    '828': 1.81 / 2,
+    // '640': 2.34 / 2,
+    // '750': 1,
+    // '828': 1.81 / 2,
   },
   sourceRoot: 'src',
   outputRoot: 'dist',

@@ -29,7 +29,7 @@ class Home extends Component {
     skip: 0,
     hasMore: true
   };
-
+  
   componentWillMount() {
     Taro.showShareMenu();
   }
@@ -72,9 +72,9 @@ class Home extends Component {
           hasMore: res.total <= skip ? false : true,
           skip: skip + REQUEST_LIMIT
         });
-        Taro.hideNavigationBarLoading();
       })
       .finally(() => {
+        Taro.hideNavigationBarLoading();
         if (refresh) {
           Taro.stopPullDownRefresh();
         }

@@ -1,4 +1,4 @@
-import { ITEM_INFO, ITEM_RECOMMEND,ITEM_POST,ITEM_UPLOAD,ITEM_TAG } from '@constants/item'
+import { ITEM_INFO, ITEM_RECOMMEND,ITEM_POST,ITEM_DELETE,ITEM_TAG } from '@constants/item'
 
 const INITIAL_STATE = {
   itemInfo: null
@@ -20,6 +20,9 @@ export default function item(state = INITIAL_STATE, action) {
     }
     case ITEM_RECOMMEND: {
       return { ...state }
+    }
+    case ITEM_DELETE :{
+      return {...state}
     }
     default:
       return state

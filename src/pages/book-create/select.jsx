@@ -15,7 +15,6 @@ import { connect } from "@tarojs/redux";
 import * as actions from "@actions/item";
 import "./index.scss";
 import { matchTheLeftDataWithoutSymbol } from "../../tools";
-import { updateStorage, getStorage } from "@utils/request";
 
 @connect(state => state.home, { ...actions })
 export default class BookCreateSelect extends Component {

@@ -5,31 +5,29 @@ import {
   AtTag,
   AtAvatar,
   AtDivider,
-  AtButton,
   AtTabs,
   AtTabsPane
 } from "taro-ui";
 import "./item.scss";
-import * as actions from "@actions/item";
+import * as actionsItem from "@actions/item";
+import * as actionsHome from "@actions/home";
 import {
   goToTagPage,
-  getMDByDateTIme,
   getBriefDate,
   getBriefTime
 } from "../../tools/index";
-import { postcss, getWindowHeight } from "@utils/style";
+import { postcss } from "@utils/style";
 import { connect } from "@tarojs/redux";
 
-@connect(state => state.item, { ...actions })
+@connect(state => state.item, { ...actionsItem })
+@connect(state => state.home, { ...actionsHome })
 export default class BookItem extends Component {
   config = {
     navigationBarTitleText: "小张私厨"
   };
 
   static defaultProps = {
-    data: [],
-    img1: "https://blog.img.crazyphper.com/2019/12/DSC4807.jpg",
-    avatar: "https://img.crazyphper.com/home/images/picture.jpg"
+    data: []
   };
 
   state = {
@@ -101,18 +99,43 @@ export default class BookItem extends Component {
     let that = this;
     const { id } = that.state;
 
+    Taro.showToast({
+      title: "已删除",
+      icon: "success",
+      success: (res) => {
+        Taro.switchTab({
+          url: `/pages/index/home`,
+          success: (res)=> {
+              this.props.dispatchRecommendClean(id)
+          }
+        });
+      }
+    });
+  
+    return false;
+
+
     Taro.showModal({
       content: "一经删除无法回复哦",
       title: "确认要删除吗？",
-      success: function(res) {
+      success: (res) =>{
         if (res.confirm) {
           that.props.dispatchItemDelete(id).then(() => {
             Taro.showToast({
               title: "已删除",
               icon: "success",
-              success: function(res) {
+              success: (res) => {
                 Taro.switchTab({
-                  url: `/pages/index/home`
+                  url: `/pages/index/home?ff=1`,
+                  success: (res)=> {
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) {
+                      return;
+                    } else {
+                      console.log("刷新！")
+                      page.onLoad();
+                    }
+                  }
                 });
               }
             });
