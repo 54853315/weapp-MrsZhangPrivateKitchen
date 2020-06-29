@@ -99,21 +99,6 @@ export default class BookItem extends Component {
     let that = this;
     const { id } = that.state;
 
-    Taro.showToast({
-      title: "已删除",
-      icon: "success",
-      success: (res) => {
-        Taro.switchTab({
-          url: `/pages/index/home`,
-          success: (res)=> {
-              this.props.dispatchRecommendClean(id)
-          }
-        });
-      }
-    });
-  
-    return false;
-
 
     Taro.showModal({
       content: "一经删除无法回复哦",
@@ -126,15 +111,9 @@ export default class BookItem extends Component {
               icon: "success",
               success: (res) => {
                 Taro.switchTab({
-                  url: `/pages/index/home?ff=1`,
+                  url: `/pages/index/home`,
                   success: (res)=> {
-                    var page = getCurrentPages().pop();
-                    if (page == undefined || page == null) {
-                      return;
-                    } else {
-                      console.log("刷新！")
-                      page.onLoad();
-                    }
+                      this.props.dispatchRecommendClean(id)
                   }
                 });
               }
