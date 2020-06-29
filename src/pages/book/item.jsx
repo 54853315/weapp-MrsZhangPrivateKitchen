@@ -23,7 +23,7 @@ import { connect } from "@tarojs/redux";
 @connect(state => state.home, { ...actionsHome })
 export default class BookItem extends Component {
   config = {
-    navigationBarTitleText: "小张私厨"
+    navigationBarTitleText: "小张酷炫生活"
   };
 
   static defaultProps = {

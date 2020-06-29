@@ -12,7 +12,7 @@ const REQUEST_LIMIT = 5;
 @connect(state => state.home, { ...actions })
 class Home extends Component {
   config = {
-    navigationBarTitleText: "小张私厨",
+    navigationBarTitleText: "小张酷炫生活",
     enablePullDownRefresh: true,
     onReachBottomDistance: 50
   };
