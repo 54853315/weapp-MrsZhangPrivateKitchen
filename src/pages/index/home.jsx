@@ -21,7 +21,7 @@ class Home extends Component {
     super(...arguments);
   }
 
-  refTimeline = node => (this.timeline = node);
+  // refTimeline = node => (this.timeline = node);
 
   state = {
     loaded: false,
@@ -52,6 +52,7 @@ class Home extends Component {
   onPullDownRefresh() {
     this.loadRecommend(true);
   }
+
   loadRecommend = (refresh) => {
     if ((!this.state.hasMore && refresh != true) || this.state.loading) {
       return;
@@ -85,7 +86,8 @@ class Home extends Component {
     if (!this.state.loaded) {
       return <Loading />;
     }
-    const { homeInfo, timelines } = this.props;
+    const { timelines } = this.props;
+    
     return (
       <View ClassName="home">
         <AtNoticebar icon="volume-plus" marquee className="home__noticebar">

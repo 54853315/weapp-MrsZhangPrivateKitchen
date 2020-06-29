@@ -1,10 +1,9 @@
-import Taro, { Component, useEffect } from "@tarojs/taro";
+import Taro, { Component } from "@tarojs/taro";
 import { View, Text, Image } from "@tarojs/components";
-import { AtLoadMore, AtTag } from "taro-ui";
+import { AtTag } from "taro-ui";
 import "./index.scss";
 import {
   goToTagPage,
-  // goToBookItemPage,
   getMDByDateTIme,
   getBriefDate,
   getBriefTime
@@ -34,7 +33,7 @@ export default class Timeline extends Component {
             //via : https://developers.weixin.qq.com/community/develop/doc/000c8a7eeb45e8b018b72f01356800
             const outermostBook = books[0];
             return (
-              <View className="timeline" key={index}>
+              <View className="timeline" key={key}>
                 {!!outermostBook && (
                   <View className="tl-time">
                     {/* 日期 */}
