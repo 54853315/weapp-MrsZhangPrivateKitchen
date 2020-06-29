@@ -16,13 +16,24 @@ const store = configStore();
 
 class App extends Component {
   componentDidMount() {
+    Promise.prototype.finally = function(callback) {
+      let P = this.constructor;
+      return this.then(
+        value => P.resolve(callback()).then(() => value),
+        reason =>
+          P.resolve(callback()).then(() => {
+            throw reason;
+          })
+      );
+    };
+
     normalWxlLogin().then(res => {
       // console.log(res, 'user login')
     });
   }
 
   componentDidShow() {
-    Taro.onNetworkStatusChange( (res) => {
+    Taro.onNetworkStatusChange(res => {
       console.log("res", res);
       if (res.networkType == "none") {
         Taro.showToast({
