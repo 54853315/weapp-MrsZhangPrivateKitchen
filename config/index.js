@@ -15,16 +15,17 @@ const sassImporter = function(url) {
   }
 }
 
+
 const config = {
   projectName: 'food',
   date: '2020-6-29',
   designWidth: 750,
   deviceRatio: {
+    '320':1/2,
+    '375': 1 / 1.5,
     '640': 2.34 / 2,
     '750': 1,
     '828': 1.81 / 2,
-    '375': 1 / 1.5,
-    '320':1/2,
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
@@ -40,20 +41,17 @@ const config = {
       'transform-class-properties',
       'transform-object-rest-spread',
       ['transform-runtime', {
-          helpers: false,
-          polyfill: false,
-          regenerator: true,
-          moduleName: 'babel-runtime'
-        }
-      ]
+        'helpers': false,
+        'polyfill': false,
+        'regenerator': true,
+        'moduleName': 'babel-runtime'
+      }]
     ]
   },
   plugins: [
     '@tarojs/plugin-sass',
     '@tarojs/plugin-terser'
   ],
-  defineConstants: {
-  },
   alias: {
     '@actions': path.resolve(__dirname, '..', 'src/actions'),
     '@assets': path.resolve(__dirname, '..', 'src/assets'),
@@ -64,23 +62,16 @@ const config = {
     '@styles': path.resolve(__dirname, '..', 'src/styles'),
     '@utils': path.resolve(__dirname, '..', 'src/utils')
   },
+  sass: {
+    importer: sassImporter
+  },
+  defineConstants: {
+  },
   mini: {
     postcss: {
-      autoprefixer: {
-        enable: true,
-        config: {
-          browsers: [
-            'last 3 versions',
-            'Android >= 4.1',
-            'ios >= 8'
-          ]
-        }
-      },
       pxtransform: {
         enable: true,
-        config: {
-
-        }
+        config: {}
       },
       url: {
         enable: true,
