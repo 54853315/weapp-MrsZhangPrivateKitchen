@@ -12,24 +12,25 @@ const REQUEST_LIMIT = 5;
 @connect(state => state.home, { ...actions })
 class Home extends Component {
   config = {
-    navigationBarTitleText: "小张酷炫生活",
-    enablePullDownRefresh: true,
-    onReachBottomDistance: 50
+    navigationBarTitleText: "小张酷炫生活"
+    //NOTE 由于小程序下拉刷新和组件有冲突，所以下边的设置无效（或者说，需要拖动ScrollView以外的区域才能触发～）
+    // enablePullDownRefresh: true,
+    // onReachBottomDistance: 50
   };
 
   constructor() {
     super(...arguments);
   }
-
   // refTimeline = node => (this.timeline = node);
 
   state = {
     loaded: false,
     loading: false,
     skip: 0,
-    hasMore: true
+    hasMore: true,
+    scrollTop: 0
   };
-  
+
   componentWillMount() {
     Taro.showShareMenu();
   }
@@ -41,6 +42,20 @@ class Home extends Component {
     };
   }
 
+  // NOTE 动画效果回不去，虽然能获取数据，但是loading 一直 雏在那儿
+  onRefresherRefresh(res) {
+    console.log("onRefresherRefresh");
+    this.setState({ scrollTop: 0 });
+    this.loadRecommend(true);
+    Taro.pageScrollTo({
+      scrollTop: 800,
+      duration: 300,
+      complete:function(res){
+        console.error("complete!!",res)
+      }
+    });
+  }
+
   componentDidShow() {
     this.props.dispatchHome().then(() => {
       this.setState({ loaded: true });
@@ -49,11 +64,8 @@ class Home extends Component {
     this.loadRecommend();
   }
 
-  onPullDownRefresh() {
-    this.loadRecommend(true);
-  }
-
-  loadRecommend = (refresh) => {
+  loadRecommend = refresh => {
+    this.bindrefresherrestore = true;
     if ((!this.state.hasMore && refresh != true) || this.state.loading) {
       return;
     }
@@ -75,9 +87,9 @@ class Home extends Component {
       })
       .finally(() => {
         Taro.hideNavigationBarLoading();
-        if (refresh) {
-          Taro.stopPullDownRefresh();
-        }
+        // if (refresh) {
+        //   Taro.stopPullDownRefresh();
+        // }
         this.setState({ loading: false });
       });
   };
@@ -87,19 +99,22 @@ class Home extends Component {
       return <Loading />;
     }
     const { timelines } = this.props;
-    
+
     return (
       <View ClassName="home">
         <AtNoticebar icon="volume-plus" marquee className="home__noticebar">
-        小张炫酷生活小程序，主要是为了取悦张奶油。
+          小张炫酷生活小程序，主要是为了取悦张奶油。
         </AtNoticebar>
 
         <ScrollView
           scrollY
+          // scrollWithAnimation
+          // refresherEnabled //开启自定义下拉刷新
+          // scrollTop={this.state.scrollTop}
           className=""
           style={{ height: getWindowHeight() }}
-          // home__wrap
           onScrollToLower={this.loadRecommend}
+          onRefresherRefresh={this.onRefresherRefresh.bind(this)} //自定义下拉刷新被触发
         >
           <Timeline list={timelines} />
           <View>
